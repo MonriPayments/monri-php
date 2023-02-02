@@ -5,7 +5,9 @@ namespace Monri;
 use Monri\Api\AccessTokens;
 use Monri\Api\Customers;
 use Monri\Api\Payments;
+use Monri\Api\Tokens;
 use Monri\Exception\MonriException;
+use TheSeer\Tokenizer\Token;
 
 class Client
 {
@@ -81,6 +83,19 @@ class Client
             $this->accessTokens = new AccessTokens($this->config, $this->httpClient());
         }
         return $this->accessTokens;
+    }
+
+    /**
+     * @return Tokens
+     * @throws MonriException if configuration is not set
+     */
+    public function tokens(): Tokens
+    {
+        $this->ensureConfigSet();
+        if ($this->tokens == null) {
+            $this->tokens = new Tokens($this->config, $this->httpClient());
+        }
+        return $this->tokens;
     }
 
     /**

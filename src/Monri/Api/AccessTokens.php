@@ -6,7 +6,6 @@ use Monri\Config;
 use Monri\Exception\MonriException;
 use Monri\HttpClient;
 use Monri\Model\AccessTokenCreateResponse;
-use PhpParser\Node\Expr\Array_;
 
 class AccessTokens
 {
