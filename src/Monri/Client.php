@@ -112,25 +112,25 @@ class Client
     }
 
     /**
-     * @param mixed $merchantKey
+     * @param string|null $merchantKey
      */
-    public function setMerchantKey($merchantKey)
+    public function setMerchantKey(?string $merchantKey)
     {
         $this->config->setMerchantKey($merchantKey);
     }
 
     /**
-     * @param mixed $authenticityToken
+     * @param string | null $authenticityToken
      */
-    public function setAuthenticityToken($authenticityToken)
+    public function setAuthenticityToken(?string $authenticityToken)
     {
         $this->config->setAuthenticityToken($authenticityToken);
     }
 
     /**
-     * @param mixed $environment
+     * @param string | null $environment
      */
-    public function setEnvironment($environment)
+    public function setEnvironment(?string $environment)
     {
         $this->config->setEnvironment($environment);
     }
@@ -157,4 +157,27 @@ class Client
         return $this->httpClient;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getMerchantKey(): ?string
+    {
+        return $this->config->getMerchantKey();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthenticityToken(): ?string
+    {
+        return $this->config->getAuthenticityToken();
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEnvironment(): ?string
+    {
+        return $this->config->getEnvironment();
+    }
 }

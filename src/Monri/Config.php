@@ -7,9 +7,34 @@ use Monri\Exception\MonriException;
 class Config
 {
 
+    /**
+     * @var string | null
+     */
     private $merchantKey;
+    /**
+     * @var string | null
+     */
     private $authenticityToken;
+    /**
+     * @var string | null
+     */
     private $environment;
+
+    /**
+     * @param string|null $merchantKey
+     * @param string|null $authenticityToken
+     * @param string|null $environment
+     */
+    public function __construct(
+        ?string $merchantKey = null,
+        ?string $authenticityToken = null,
+        ?string $environment = null
+    ) {
+        $this->merchantKey = $merchantKey;
+        $this->authenticityToken = $authenticityToken;
+        $this->setEnvironment($environment);
+    }
+
 
     /**
      * @return bool
@@ -20,50 +45,56 @@ class Config
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getMerchantKey()
+    public function getMerchantKey(): ?string
     {
         return $this->merchantKey;
     }
 
     /**
-     * @return mixed
+     * @param string|null $merchantKey
      */
-    public function getAuthenticityToken()
-    {
-        return $this->authenticityToken;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEnvironment()
-    {
-        return $this->environment;
-    }
-
-    /**
-     * @param mixed $merchantKey
-     */
-    public function setMerchantKey($merchantKey)
+    public function setMerchantKey(?string $merchantKey): void
     {
         $this->merchantKey = $merchantKey;
     }
 
     /**
-     * @param mixed $authenticityToken
+     * @return string|null
      */
-    public function setAuthenticityToken($authenticityToken)
+    public function getAuthenticityToken(): ?string
+    {
+        return $this->authenticityToken;
+    }
+
+    /**
+     * @param string|null $authenticityToken
+     */
+    public function setAuthenticityToken(?string $authenticityToken): void
     {
         $this->authenticityToken = $authenticityToken;
     }
 
     /**
-     * @param mixed $environment
+     * @return string|null
      */
-    public function setEnvironment($environment)
+    public function getEnvironment(): ?string
     {
+        return $this->environment;
+    }
+
+    /**
+     * @param string|null $environment
+     * @throws MonriException
+     */
+    public function setEnvironment(?string $environment): void
+    {
+        if (isset($environment)) {
+            if (!($environment == 'test' || $environment == 'production')) {
+                throw new MonriException("Environment='${environment}' not supported!");
+            }
+        }
         $this->environment = $environment;
     }
 
