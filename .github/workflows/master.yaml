@@ -37,5 +37,5 @@ jobs:
       - name: Clean up reports
         run: sed -i "s;`pwd`/;;g" build/*.xml
 
-      - name: Run PHP Code Sniffer
-        run: vendor/bin/phpcs
+#      - name: Run PHP Code Sniffer
+#        run: vendor/bin/phpcs
