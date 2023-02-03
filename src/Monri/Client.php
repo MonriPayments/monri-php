@@ -2,10 +2,10 @@
 
 namespace Monri;
 
-use Monri\Api\AccessTokens;
-use Monri\Api\Customers;
-use Monri\Api\Payments;
-use Monri\Api\Tokens;
+use Monri\Api\AccessTokensApi;
+use Monri\Api\CustomersApi;
+use Monri\Api\PaymentsApi;
+use Monri\Api\TokensApi;
 use Monri\Exception\MonriException;
 use TheSeer\Tokenizer\Token;
 
@@ -21,22 +21,22 @@ class Client
     private $config;
 
     /**
-     * @var Payments
+     * @var PaymentsApi
      */
     private $payments;
 
     /**
-     * @var AccessTokens
+     * @var AccessTokensApi
      */
     private $accessTokens;
 
     /**
-     * @var Customers
+     * @var CustomersApi
      */
     private $customers;
 
     /**
-     * @var Tokens
+     * @var TokensApi
      */
     private $tokens;
 
@@ -60,53 +60,53 @@ class Client
     }
 
     /**
-     * @return Payments
+     * @return PaymentsApi
      * @throws MonriException if configuration is not set
      */
-    public function payments(): Payments
+    public function payments(): PaymentsApi
     {
         $this->ensureConfigSet();
         if ($this->tokens == null) {
-            $this->payments = new Payments($this->config, $this->httpClient(), $this->accessTokens());
+            $this->payments = new PaymentsApi($this->config, $this->httpClient(), $this->accessTokens());
         }
         return $this->payments;
     }
 
     /**
-     * @return AccessTokens
+     * @return AccessTokensApi
      * @throws MonriException if configuration is not set
      */
-    public function accessTokens(): AccessTokens
+    public function accessTokens(): AccessTokensApi
     {
         $this->ensureConfigSet();
         if ($this->tokens == null) {
-            $this->accessTokens = new AccessTokens($this->config, $this->httpClient());
+            $this->accessTokens = new AccessTokensApi($this->config, $this->httpClient());
         }
         return $this->accessTokens;
     }
 
     /**
-     * @return Tokens
+     * @return TokensApi
      * @throws MonriException if configuration is not set
      */
-    public function tokens(): Tokens
+    public function tokens(): TokensApi
     {
         $this->ensureConfigSet();
         if ($this->tokens == null) {
-            $this->tokens = new Tokens($this->config, $this->httpClient());
+            $this->tokens = new TokensApi($this->config, $this->httpClient());
         }
         return $this->tokens;
     }
 
     /**
-     * @return Customers
+     * @return CustomersApi
      * @throws MonriException if configuration is not set
      */
-    public function customers(): Customers
+    public function customers(): CustomersApi
     {
         $this->ensureConfigSet();
         if ($this->tokens == null) {
-            $this->customers = new Customers($this->config, $this->httpClient(), $this->accessTokens());
+            $this->customers = new CustomersApi($this->config, $this->httpClient(), $this->accessTokens());
         }
         return $this->customers;
     }

@@ -3,6 +3,7 @@
 namespace Monri;
 
 use Monri\Exception\MonriException;
+use Monri\Exception\MonriHttpException;
 
 class HttpClient
 {
@@ -88,6 +89,17 @@ class HttpClient
         }
 
         curl_close($ch);
+
+        if (!($http_status >= 200 && $http_status < 300)) {
+            if (!isset($exception)) {
+                $exception = new MonriHttpException(
+                    $http_status,
+                    $result,
+                    $response_headers,
+                    "Request failed with status code='$http_status'"
+                );
+            }
+        }
 
         return new \Monri\ApiHttpResponse($response_as_json, $result, $http_status, $response_headers, $exception);
     }

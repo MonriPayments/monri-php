@@ -6,7 +6,7 @@ use Monri\Model\PaymentCreateResponse;
 use Monri\Model\PaymentResult;
 use Monri\Model\StatusResponse;
 
-class Payments extends AuthenticationApi
+class PaymentsApi extends AuthenticationApi
 {
     /**
      * @throws \Exception

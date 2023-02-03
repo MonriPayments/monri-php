@@ -6,7 +6,7 @@ use Monri\Config;
 use Monri\HttpClient;
 use Monri\Model\TempCardId;
 
-class Tokens
+class TokensApi
 {
     /**
      * @var Config

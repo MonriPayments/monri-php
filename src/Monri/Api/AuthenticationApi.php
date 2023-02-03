@@ -17,16 +17,16 @@ class AuthenticationApi
      */
     protected $httpClient;
     /**
-     * @var AccessTokens
+     * @var AccessTokensApi
      */
     protected $accessTokens;
 
     /**
      * @param Config $config
      * @param HttpClient $httpClient
-     * @param AccessTokens $accessTokens
+     * @param AccessTokensApi $accessTokens
      */
-    public function __construct(Config $config, HttpClient $httpClient, AccessTokens $accessTokens)
+    public function __construct(Config $config, HttpClient $httpClient, AccessTokensApi $accessTokens)
     {
         $this->config = $config;
         $this->httpClient = $httpClient;

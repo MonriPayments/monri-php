@@ -2,7 +2,7 @@
 
 namespace Monri\Tests\Api;
 
-use Monri\Api\Tokens;
+use Monri\Api\TokensApi;
 use Monri\Exception\MonriException;
 
 class TokensTest extends \Monri\Tests\TestCase

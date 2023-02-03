@@ -7,7 +7,7 @@ use Monri\Exception\MonriException;
 use Monri\HttpClient;
 use Monri\Model\AccessTokenCreateResponse;
 
-class AccessTokens
+class AccessTokensApi
 {
     /**
      * @var HttpClient
